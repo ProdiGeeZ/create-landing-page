@@ -1,5 +1,5 @@
 {
-  "name": "create-landing-page-prodigeez",
+  "name": "@prodigeez/create-landing-page",
   "version": "1.0.0",
   "description": "CLI tool to create high-converting landing pages with Next.js",
   "keywords": [

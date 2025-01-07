@@ -5,7 +5,7 @@ A powerful CLI tool to generate high-converting landing pages with Next.js, Type
 ## 🚀 Quick Start
 
 ```bash
-npx create-landing-page
+npx @prodigeez/create-landing-page
 ```
 
 ## ✨ Features
@@ -38,7 +38,7 @@ npx create-landing-page
 
 1. Create a new project:
 ```bash
-npx create-landing-page
+npx @prodigeez/create-landing-page
 ```
 
 2. Follow the prompts:
