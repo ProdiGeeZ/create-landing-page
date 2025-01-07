@@ -1,6 +1,6 @@
 {
   "name": "@prodigeez/create-landing-page",
-  "version": "1.0.94",
+  "version": "1.0.98",
   "description": "CLI tool to create high-converting landing pages with Next.js",
   "keywords": [
     "nextjs",
@@ -25,7 +25,7 @@
   "type": "commonjs",
   "main": "./bin/create-landing.js",
   "bin": {
-    "create-landing-page": "bin/create-landing.js"
+    "@prodigeez/create-landing-page": "./bin/create-landing.js"
   },
   "files": [
     "bin/",
@@ -33,6 +33,7 @@
     "scripts/"
   ],
   "scripts": {
+    "start": "next dev",
     "build": "tsc --project tsconfig.json --noEmit false --outDir dist",
     "test": "jest",
     "prepublishOnly": "npm run test",

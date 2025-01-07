@@ -1,5 +1,3 @@
-import { siteConfig } from '@/config/site';
-
 interface FooterLink {
     label: string;
     href: string;

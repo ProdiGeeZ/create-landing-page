@@ -1,5 +1,4 @@
 import Navbar from '@/components/layout/Navbar';
-import HeroSection from '@/components/sections/HeroSection';
 import SocialProof from '@/components/sections/SocialProof';
 import Features from '@/components/sections/Features';
 import Solution from '@/components/sections/Solution';
@@ -11,13 +10,14 @@ import FAQSection from '@/components/sections/FAQ';
 import CTA from '@/components/sections/CTA';
 import Footer from '@/components/layout/Footer';
 import { siteConfig } from '@/config/site';
+import Hero from '@/components/sections/Hero';
 
 export default function Home() {
   return (
     <>
       <Navbar items={siteConfig.nav} />
       <main>
-        <HeroSection />
+        <Hero />
         <SocialProof />
         <Features features={siteConfig.features} />
         <Solution />

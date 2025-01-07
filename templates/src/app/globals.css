@@ -5,15 +5,15 @@
 @layer base {
   :root {
     --background: #ffffff;
-    --foreground: #171717;
-    --primary: #2563eb;
+    --foreground: #000000;
+    --primary: #0070f3;
     --primary-foreground: #ffffff;
   }
 
   [data-theme="dark"] {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --primary: #3b82f6;
+    --background: #000000;
+    --foreground: #ffffff;
+    --primary: #0070f3;
     --primary-foreground: #ffffff;
   }
 }
