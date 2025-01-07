@@ -1,3 +1,4 @@
+import React from 'react';
 import Navbar from '@/components/layout/Navbar';
 import HeroSection from '@/components/sections/HeroSection';
 import SocialProof from '@/components/sections/SocialProof';
@@ -13,22 +14,22 @@ import Footer from '@/components/layout/Footer';
 import { siteConfig } from '@/config/site';
 
 export default function Home() {
-  return (
-    <>
-      <Navbar items={siteConfig.nav} />
-      <main>
-        <HeroSection />
-        <SocialProof />
-        <Features features={siteConfig.features} />
-        <Solution />
-        <Benefits />
-        <HowItWorks />
-        <Integrations />
-        <Testimonials testimonials={siteConfig.testimonials} />
-        <FAQSection faqs={siteConfig.faqs} />
-        <CTA />
-      </main>
-      <Footer />
-    </>
-  );
-}
+    return (
+        <React.Fragment>
+            <Navbar items={siteConfig.nav} />
+            <main>
+                <HeroSection />
+                <SocialProof />
+                <Features features={siteConfig.features} />
+                <Solution />
+                <Benefits />
+                <HowItWorks />
+                <Integrations />
+                <Testimonials testimonials={siteConfig.testimonials} />
+                <FAQSection faqs={siteConfig.faqs} />
+                <CTA />
+            </main>
+            <Footer />
+        </React.Fragment>
+    );
+} 
