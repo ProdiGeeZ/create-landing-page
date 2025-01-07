@@ -1,0 +1,20 @@
+# Development files
+__tests__/
+.github/
+test/
+*.test.js
+
+# IDE files
+.vscode/
+.idea/
+
+# Build artifacts
+.next/
+dist/
+build/
+
+# Misc
+.DS_Store
+*.log
+.git/
+node_modules/ 
