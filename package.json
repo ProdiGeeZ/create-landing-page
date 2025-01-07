@@ -1,16 +1,16 @@
 {
-  "name": "create-landing-page",
+  "name": "@prodigeez/create-landing-page",
   "version": "1.0.0",
   "description": "CLI tool to create high-converting landing pages with Next.js",
   "author": "Mohammed Saabir Ahmed",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/create-landing-page.git"
+    "url": "https://github.com/ProdiGeeZ/create-landing-page.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/create-landing-page/issues"
+    "url": "https://github.com/ProdiGeeZ/create-landing-page/issues"
   },
-  "homepage": "https://github.com/yourusername/create-landing-page#readme",
+  "homepage": "https://github.com/ProdiGeeZ/create-landing-page#readme",
   "license": "MIT",
   "bin": {
     "create-landing": "./bin/create-landing.js"
