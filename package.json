@@ -1,32 +1,7 @@
 {
-  "name": "@prodigeez/create-landing-page",
+  "name": "create-landing-page-prodigeez",
   "version": "1.0.0",
   "description": "CLI tool to create high-converting landing pages with Next.js",
-  "author": "Mohammed Saabir Ahmed",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ProdiGeeZ/create-landing-page.git"
-  },
-  "bugs": {
-    "url": "https://github.com/ProdiGeeZ/create-landing-page/issues"
-  },
-  "homepage": "https://github.com/ProdiGeeZ/create-landing-page#readme",
-  "license": "MIT",
-  "bin": {
-    "create-landing": "./bin/create-landing.js"
-  },
-  "files": [
-    "bin/",
-    "templates/",
-    "README.md",
-    "scripts/"
-  ],
-  "dependencies": {
-    "prompts": "^2.4.2",
-    "chalk": "^4.1.2",
-    "ora": "^5.4.1",
-    "fs-extra": "^11.2.0"
-  },
   "keywords": [
     "nextjs",
     "landing-page",
@@ -37,14 +12,43 @@
     "chakra-ui",
     "mantine"
   ],
+  "homepage": "https://github.com/ProdiGeeZ/create-landing-page#readme",
+  "bugs": {
+    "url": "https://github.com/ProdiGeeZ/create-landing-page/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ProdiGeeZ/create-landing-page.git"
+  },
+  "license": "MIT",
+  "author": "Mohammed Saabir Ahmed",
+  "type": "commonjs",
+  "main": "./bin/create-landing.js",
+  "bin": {
+    "create-landing": "bin/create-landing.js"
+  },
+  "files": [
+    "bin/",
+    "templates/",
+    "README.md",
+    "scripts/"
+  ],
   "scripts": {
     "build": "tsc",
     "test": "jest",
     "prepublishOnly": "npm run test",
+    "preversion": "npm run test",
+    "postversion": "git push && git push --tags",
     "test:watch": "jest --watch",
     "dev": "node bin/create-landing.js",
     "create": "node bin/create-landing.js",
     "prepare": "npm run test"
+  },
+  "dependencies": {
+    "prompts": "^2.4.2",
+    "chalk": "^4.1.2",
+    "ora": "^5.4.1",
+    "fs-extra": "^11.2.0"
   },
   "devDependencies": {
     "jest": "^29.0.0",
