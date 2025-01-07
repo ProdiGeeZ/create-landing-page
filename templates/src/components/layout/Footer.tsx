@@ -1,3 +1,5 @@
+import { siteConfig } from '@/config/site';
+
 export default function Footer() {
     return (
         <footer className="bg-gray-900 text-gray-300 py-12">
@@ -14,9 +16,13 @@ export default function Footer() {
                     <div>
                         <h3 className="text-white font-bold mb-4">Product</h3>
                         <ul className="space-y-2">
-                            <li><a href="#" className="hover:text-white">Features</a></li>
-                            <li><a href="#" className="hover:text-white">Pricing</a></li>
-                            <li><a href="#" className="hover:text-white">Documentation</a></li>
+                            {siteConfig.nav.map((item, index) => (
+                                <li key={index}>
+                                    <a href={item.href} className="hover:text-white">
+                                        {item.label}
+                                    </a>
+                                </li>
+                            ))}
                         </ul>
                     </div>
                     <div>
@@ -35,7 +41,7 @@ export default function Footer() {
                     </div>
                 </div>
                 <div className="border-t border-gray-800 mt-12 pt-8 text-center">
-                    <p>&copy; {new Date().getFullYear()} Your Company. All rights reserved.</p>
+                    <p>&copy; {new Date().getFullYear()} {siteConfig.name}. All rights reserved.</p>
                 </div>
             </div>
         </footer>

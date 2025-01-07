@@ -8,38 +8,49 @@ const isTestMode = process.env.TEST_MODE === 'true';
 const frameworks = {
     shadcn: {
         packages: ['@shadcn/ui'],
-        setup: () => {
-            if (isTestMode) {
+        setup: async () => {
+            if (process.env.TEST_MODE === 'true') {
                 // Mock setup for testing
-                const mockProvider = `
-export default function UIProvider({ children }) {
-  return <>{children}</>;
-}`;
-                fs.writeFileSync(path.join(process.cwd(), 'src/providers/UIProvider.tsx'), mockProvider);
-            } else {
+                return;
+            }
+            try {
+                // Install dependencies first
+                execSync('npm install -D tailwindcss postcss autoprefixer', { stdio: 'inherit' });
+                execSync('npx tailwindcss init -p', { stdio: 'inherit' });
                 execSync('npx shadcn-ui@latest init', { stdio: 'inherit' });
+            } catch (error) {
+                console.error('Failed to set up shadcn/ui:', error);
+                process.exit(1);
             }
         }
     },
     chakra: {
         packages: ['@chakra-ui/react', '@emotion/react', '@emotion/styled', 'framer-motion'],
         setup: () => {
-            const chakraProvider = `
-import { ChakraProvider } from '@chakra-ui/react';
-export default function UIProvider({ children }) {
-  return <ChakraProvider>{children}</ChakraProvider>;
-}`;
-            fs.writeFileSync(path.join(process.cwd(), 'src/providers/UIProvider.tsx'), chakraProvider);
+            try {
+                execSync('npm install @chakra-ui/react @emotion/react @emotion/styled framer-motion', { stdio: 'inherit' });
+                // Create UIProvider with ChakraProvider
+                const chakraProvider = `
+                    import { ChakraProvider } from '@chakra-ui/react';
+                    export default function UIProvider({ children }) {
+                        return <ChakraProvider>{children}</ChakraProvider>;
+                    }`;
+                fs.writeFileSync(path.join(process.cwd(), 'src/providers/UIProvider.tsx'), chakraProvider);
+            } catch (error) {
+                console.error('Failed to set up Chakra UI:', error);
+                process.exit(1);
+            }
         }
     },
     mantine: {
         packages: ['@mantine/core', '@mantine/hooks'],
         setup: () => {
             const mantineProvider = `
-import { MantineProvider } from '@mantine/core';
-export default function UIProvider({ children }) {
-  return <MantineProvider>{children}</MantineProvider>;
-}`;
+                import React from 'react';
+                import { MantineProvider } from '@mantine/core';
+                export default function UIProvider({ children }) {
+                    return <MantineProvider>{children}</MantineProvider>;
+                }`;
             fs.writeFileSync(path.join(process.cwd(), 'src/providers/UIProvider.tsx'), mantineProvider);
         }
     }
@@ -50,9 +61,8 @@ if (!framework || !frameworks[framework]) {
     process.exit(1);
 }
 
-console.log(`Setting up ${framework}...`);
-
 try {
+    console.log(`Setting up ${framework}...`);
     if (!isTestMode) {
         execSync(`npm install ${frameworks[framework].packages.join(' ')}`, { stdio: 'inherit' });
     }

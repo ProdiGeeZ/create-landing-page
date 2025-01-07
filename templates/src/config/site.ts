@@ -1,27 +1,37 @@
-export const siteConfig = {
+import { SiteConfig } from '@/types';
+
+export const siteConfig: SiteConfig = {
     name: "PROJECT_NAME",
-    description: "Your landing page description",
+    description: "A modern landing page built with Next.js",
     nav: [
-        // Your navigation items
+        { label: "Features", href: "#features" },
+        { label: "Benefits", href: "#benefits" },
+        { label: "Solution", href: "#solution" },
+        { label: "Testimonials", href: "#testimonials" },
+        { label: "FAQ", href: "#faq" }
     ],
     features: [
         {
             title: "Feature 1",
             description: "Description of feature 1",
+            icon: "✨"
         },
+        // Add more features...
     ],
     testimonials: [
         {
-            content: "This product is amazing!",
             author: "John Doe",
-            role: "CEO, Company",
-            rating: 5,
+            role: "CEO",
+            content: "This product has transformed our business",
+            rating: 5
         },
+        // Add more testimonials...
     ],
     faqs: [
         {
-            question: "Common question 1?",
-            answer: "Detailed answer to question 1",
+            question: "What is this?",
+            answer: "A powerful landing page solution"
         },
-    ],
+        // Add more FAQs...
+    ]
 }; 

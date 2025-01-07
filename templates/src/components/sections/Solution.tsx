@@ -1,19 +1,47 @@
 export default function Solution() {
     return (
-        <section id="solutions" className="py-20 bg-gray-50">
+        <section id="solution" className="py-20 bg-gray-50">
             <div className="container mx-auto px-4">
-                <h2 className="text-3xl font-bold text-center mb-12">Our Solution</h2>
-                <div className="flex flex-col md:flex-row gap-8">
-                    <div className="flex-1">
-                        <div className="aspect-video bg-gray-200 rounded-lg mb-4" />
-                        <div className="grid grid-cols-3 gap-4">
-                            {[1, 2, 3].map((stat, i) => (
-                                <div key={i} className="p-4 bg-white rounded-lg shadow-sm">
-                                    <div className="text-2xl font-bold mb-1">XX%</div>
-                                    <div className="text-sm text-gray-600">Key Metric {i + 1}</div>
-                                </div>
+                <div className="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 className="text-3xl font-bold mb-6">
+                            The Complete Solution for Your Landing Page Needs
+                        </h2>
+                        <p className="text-gray-600 mb-8">
+                            Our platform provides everything you need to create, launch, and optimize
+                            high-converting landing pages. From beautiful templates to powerful
+                            analytics, we've got you covered.
+                        </p>
+                        <ul className="space-y-4">
+                            {[
+                                'Pre-built sections for quick assembly',
+                                'Responsive design out of the box',
+                                'SEO optimized structure',
+                                'Performance focused architecture',
+                                'Modern tech stack with Next.js'
+                            ].map((item, index) => (
+                                <li key={index} className="flex items-center gap-3">
+                                    <svg
+                                        className="w-5 h-5 text-green-500"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M5 13l4 4L19 7"
+                                        />
+                                    </svg>
+                                    <span>{item}</span>
+                                </li>
                             ))}
-                        </div>
+                        </ul>
+                    </div>
+                    <div className="relative">
+                        {/* Add solution illustration or screenshot here */}
+                        <div className="aspect-video bg-gray-200 rounded-lg"></div>
                     </div>
                 </div>
             </div>

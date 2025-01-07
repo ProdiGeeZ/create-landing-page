@@ -8,6 +8,15 @@ const frameworks = {
     shadcn: {
         packages: ['@shadcn/ui'],
         setup: () => {
+            if (process.env.TEST_MODE) {
+                const mockProvider = `
+                    import React from 'react';
+                    export default function UIProvider({ children }) {
+                        return <>{children}</>;
+                    }`;
+                fs.writeFileSync(path.join(process.cwd(), 'src/providers/UIProvider.tsx'), mockProvider);
+                return;
+            }
             execSync('npx shadcn-ui@latest init', { stdio: 'inherit' });
         }
     },
