@@ -2,8 +2,50 @@
 
 const { execSync } = require('child_process');
 const prompts = require('prompts');
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
+
+// Helper function to copy template files
+function copyTemplateFiles(targetPath, projectName) {
+    const templateDir = path.join(__dirname, '..', 'templates');
+
+    if (!fs.existsSync(templateDir)) {
+        console.error('\n❌ Template directory not found');
+        process.exit(1);
+    }
+
+    try {
+        // Copy all template files to the project directory
+        fs.cpSync(templateDir, targetPath, {
+            recursive: true,
+            force: true,
+            filter: (src) => {
+                // Skip node_modules if it exists in templates
+                return !src.includes('node_modules');
+            }
+        });
+
+        // Update project name in package.json
+        const pkgPath = path.join(targetPath, 'package.json');
+        if (fs.existsSync(pkgPath)) {
+            const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
+            pkg.name = projectName;
+            fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2));
+        }
+
+        // Copy scripts directory
+        const scriptsDir = path.join(__dirname, '..', 'scripts');
+        if (fs.existsSync(scriptsDir)) {
+            fs.cpSync(scriptsDir, path.join(targetPath, 'scripts'), {
+                recursive: true,
+                force: true
+            });
+        }
+    } catch (error) {
+        console.error('\n❌ Failed to copy template files:', error.message);
+        process.exit(1);
+    }
+}
 
 async function main() {
     try {
