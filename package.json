@@ -1,6 +1,6 @@
 {
   "name": "@prodigeez/create-landing-page",
-  "version": "1.0.1",
+  "version": "1.0.93",
   "description": "CLI tool to create high-converting landing pages with Next.js",
   "keywords": [
     "nextjs",
@@ -29,12 +29,11 @@
   },
   "files": [
     "bin/",
-    "templates/",
-    "README.md",
+    "templates/**/*",
     "scripts/"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "tsc --project tsconfig.json --noEmit false --outDir dist",
     "test": "jest",
     "prepublishOnly": "npm run test",
     "preversion": "npm run test",

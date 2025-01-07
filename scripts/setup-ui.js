@@ -17,7 +17,43 @@ const frameworks = {
                 fs.writeFileSync(path.join(process.cwd(), 'src/providers/UIProvider.tsx'), mockProvider);
                 return;
             }
-            execSync('npx shadcn-ui@latest init', { stdio: 'inherit' });
+            try {
+                // Install required dependencies first
+                execSync('npm install -D @shadcn/ui tailwindcss-animate class-variance-authority clsx tailwind-merge', { stdio: 'inherit' });
+
+                // Create the components.json file
+                const componentsConfig = {
+                    $schema: "https://ui.shadcn.com/schema.json",
+                    style: "default",
+                    rsc: true,
+                    tailwind: {
+                        config: "tailwind.config.js",
+                        css: "app/globals.css",
+                        baseColor: "slate",
+                        cssVariables: true,
+                    },
+                    aliases: {
+                        components: "@/components",
+                        utils: "@/lib/utils"
+                    }
+                };
+                fs.writeFileSync('components.json', JSON.stringify(componentsConfig, null, 2));
+
+                // Create utils file
+                const utilsContent = `
+                    import { clsx } from 'clsx'
+                    import { twMerge } from 'tailwind-merge'
+                    
+                    export function cn(...inputs) {
+                        return twMerge(clsx(inputs))
+                    }
+                `;
+                fs.mkdirSync('src/lib', { recursive: true });
+                fs.writeFileSync('src/lib/utils.ts', utilsContent);
+            } catch (error) {
+                console.error('Failed to set up shadcn/ui:', error);
+                process.exit(1);
+            }
         }
     },
     chakra: {

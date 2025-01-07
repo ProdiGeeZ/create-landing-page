@@ -1,31 +1,27 @@
-export interface NavItem {
-    label: string;
+export interface SiteConfig {
+  name: string;
+  description: string;
+  nav: Array<{
+    title: string;
     href: string;
-}
-
-export interface Feature {
+  }>;
+  features: Array<{
     title: string;
     description: string;
-    icon?: React.ReactNode;
+    icon?: string;
+  }>;
+  testimonials: Array<Testimonial>;
+  faqs: Array<FAQ>;
 }
 
 export interface Testimonial {
-    author: string;
-    role?: string;
-    content: string;
-    rating?: number;
+  author: string;
+  role?: string;
+  content: string;
+  rating?: number;
 }
 
 export interface FAQ {
-    question: string;
-    answer: string;
-}
-
-export interface SiteConfig {
-    name: string;
-    description: string;
-    nav: NavItem[];
-    features: Feature[];
-    testimonials: Testimonial[];
-    faqs: FAQ[];
+  question: string;
+  answer: string;
 } 

@@ -1,37 +1,74 @@
-import { SiteConfig } from '@/types';
-
-export const siteConfig: SiteConfig = {
-    name: "PROJECT_NAME",
-    description: "A modern landing page built with Next.js",
-    nav: [
-        { label: "Features", href: "#features" },
-        { label: "Benefits", href: "#benefits" },
-        { label: "Solution", href: "#solution" },
-        { label: "Testimonials", href: "#testimonials" },
-        { label: "FAQ", href: "#faq" }
+export const siteConfig = {
+    name: "Landing Page",
+    description: "Landing page template",
+      nav: [
+      {
+        label: "Solutions",
+        href: "#solutions",
+      },
+      {
+      label: "Benefits",
+      href: "#benefits",
+      },
+      {
+        label: "How it works",
+        href: "#how-it-works",
+          },
+          {
+        label: "Integrations",
+        href: "#integrations",
+      },
+      {
+        label: "Features",
+        href: "#features",
+      },
+      {
+        label: "Pricing",
+        href: "#pricing",
+      },
+      {
+        label: "FAQ",
+        href: "#faq",
+      },
     ],
     features: [
-        {
-            title: "Feature 1",
-            description: "Description of feature 1",
-            icon: "✨"
+      {
+        title: "Feature 1",
+        description: "Description of feature 1",
         },
-        // Add more features...
+        {
+        title: "Feature 2",
+        description: "Description of feature 2",
+        },
+        {
+        title: "Feature 3",
+        description: "Description of feature 3",
+        },
     ],
     testimonials: [
-        {
-            author: "John Doe",
-            role: "CEO",
-            content: "This product has transformed our business",
-            rating: 5
+      {
+        content: "This product is amazing!",
+        author: "John Doe",
+        role: "CEO, Company",
+        rating: 5,
         },
-        // Add more testimonials...
+        {
+          content: "This product is amazing!",
+          author: "John Doe",
+          role: "CEO, Company",
+          rating: 5,
+        },
+        {
+          content: "This product is amazing!",
+          author: "John Doe",
+          role: "CEO, Company",
+          rating: 5,
+        },
     ],
     faqs: [
-        {
-            question: "What is this?",
-            answer: "A powerful landing page solution"
-        },
-        // Add more FAQs...
-    ]
-}; 
+      {
+        question: "Common question 1?",
+        answer: "Detailed answer to question 1",
+      },
+    ],
+  }; 

@@ -1,6 +1,26 @@
-node_modules/
+# Development files
+__tests__/
+.github/
+test/
+*.test.js
+coverage/
+
+# IDE files
+.vscode/
+.idea/
+
+# Build artifacts
+.next/
+dist/
+build/
+
+# Misc
 .DS_Store
 *.log
 .git/
-.github/
-test/ 
+node_modules/
+
+# Don't ignore these
+!templates/
+!bin/
+!scripts/ 

@@ -8,22 +8,54 @@ const path = require('path');
 // Helper function to copy template files
 function copyTemplateFiles(targetPath, projectName) {
     const templateDir = path.join(__dirname, '..', 'templates');
-
-    if (!fs.existsSync(templateDir)) {
-        console.error('\n❌ Template directory not found');
-        process.exit(1);
-    }
+    const scriptsDir = path.join(__dirname, '..', 'scripts');
 
     try {
-        // Copy all template files to the project directory
-        fs.cpSync(templateDir, targetPath, {
-            recursive: true,
-            force: true,
-            filter: (src) => {
-                // Skip node_modules if it exists in templates
-                return !src.includes('node_modules');
+        // Copy templates
+        const templateContents = fs.readdirSync(templateDir);
+        templateContents.forEach(item => {
+            const sourcePath = path.join(templateDir, item);
+            const targetItemPath = path.join(targetPath, item);
+
+            if (fs.statSync(sourcePath).isDirectory()) {
+                fs.cpSync(sourcePath, targetItemPath, {
+                    recursive: true,
+                    force: true,
+                    filter: (src) => {
+                        // Skip node_modules and .git
+                        if (src.includes('node_modules') || src.includes('.git')) {
+                            return false;
+                        }
+                        // Skip scripts directory as we handle it separately
+                        if (src.includes('scripts')) {
+                            return false;
+                        }
+                        return true;
+                    }
+                });
+            } else {
+                // For root files, only copy if they don't exist or are in our override list
+                const overrideFiles = [
+                    'package.json',
+                    'tsconfig.json',
+                    'tailwind.config.js',
+                    'postcss.config.js',
+                    'next.config.js'
+                ];
+                if (!fs.existsSync(targetItemPath) || overrideFiles.includes(item)) {
+                    fs.copyFileSync(sourcePath, targetItemPath);
+                }
             }
         });
+
+        // Copy src directory structure
+        const srcDir = path.join(templateDir, 'src');
+        if (fs.existsSync(srcDir)) {
+            fs.cpSync(srcDir, path.join(targetPath, 'src'), {
+                recursive: true,
+                force: true
+            });
+        }
 
         // Update project name in package.json
         const pkgPath = path.join(targetPath, 'package.json');
@@ -34,7 +66,6 @@ function copyTemplateFiles(targetPath, projectName) {
         }
 
         // Copy scripts directory
-        const scriptsDir = path.join(__dirname, '..', 'scripts');
         if (fs.existsSync(scriptsDir)) {
             fs.cpSync(scriptsDir, path.join(targetPath, 'scripts'), {
                 recursive: true,
@@ -49,75 +80,81 @@ function copyTemplateFiles(targetPath, projectName) {
 
 async function main() {
     try {
+        console.clear();
         console.log('\n🚀 Welcome to Create Landing Page CLI!\n');
 
-        const response = await prompts([
-            {
-                type: 'text',
-                name: 'projectName',
-                message: 'What is your project name?',
-                initial: 'my-landing-page',
-                validate: value => {
-                    if (!/^[a-zA-Z0-9-_]+$/.test(value)) {
-                        return 'Project name can only contain letters, numbers, dashes and underscores';
+        // Skip prompts in test mode
+        let projectName = 'test-project';
+        let uiFramework = 'shadcn';
+
+        if (!process.env.TEST_MODE) {
+            const response = await prompts([
+                {
+                    type: 'text',
+                    name: 'projectName',
+                    message: 'What is your project name?',
+                    initial: 'my-landing-page',
+                    validate: value => {
+                        if (!/^[a-zA-Z0-9-_]+$/.test(value)) {
+                            return 'Project name can only contain letters, numbers, dashes and underscores';
+                        }
+                        return true;
                     }
-                    return true;
+                },
+                {
+                    type: 'select',
+                    name: 'uiFramework',
+                    message: 'Select your UI framework',
+                    choices: [
+                        { title: 'shadcn/ui', value: 'shadcn' },
+                        { title: 'Chakra UI', value: 'chakra' }
+                    ]
                 }
-            },
-            {
-                type: 'confirm',
-                name: 'useTurbopack',
-                message: 'Would you like to use Turbopack?',
-                initial: false
-            },
-            {
-                type: 'select',
-                name: 'uiFramework',
-                message: 'Select your UI framework',
-                choices: [
-                    { title: 'shadcn/ui', value: 'shadcn' },
-                    { title: 'Chakra UI', value: 'chakra' },
-                    { title: 'Mantine', value: 'mantine' },
-                ]
-            }
-        ], {
-            onCancel: () => {
-                console.log('\n🛑 Setup cancelled');
+            ]);
+
+            if (!response.projectName || !response.uiFramework) {
+                console.log('\n🛑 Required information missing');
                 process.exit(1);
             }
-        });
 
-        if (!response.projectName || !response.uiFramework) {
-            console.log('\n🛑 Required information missing');
-            process.exit(1);
+            projectName = response.projectName;
+            uiFramework = response.uiFramework;
         }
-
-        const { projectName, uiFramework, useTurbopack } = response;
 
         console.log(`\n🚀 Creating landing page project: ${projectName}...`);
 
-        const createNextAppCommand = [
-            'npx create-next-app@latest',
-            projectName,
-            '--typescript',
-            '--tailwind',
-            '--eslint',
-            useTurbopack ? '--turbo' : '',
-            '--use-npm',
-            '--no-git'
-        ].filter(Boolean).join(' ');
+        // Step 1: Create Next.js app first
+        if (!process.env.TEST_MODE) {
+            const createNextAppCommand = [
+                'npx create-next-app@latest',
+                projectName,
+                '--typescript',
+                '--tailwind',
+                '--eslint',
+                '--use-npm',
+                '--no-git'
+            ].filter(Boolean).join(' ');
 
-        execSync(createNextAppCommand, { stdio: 'inherit' });
+            execSync(createNextAppCommand, { stdio: 'inherit' });
+            process.chdir(projectName);
 
-        // Change to project directory
-        process.chdir(projectName);
+            // Create required directories first
+            fs.mkdirSync('src/providers', { recursive: true });
+            fs.mkdirSync('src/lib', { recursive: true });
 
-        // Replace git clone with template copy
-        copyTemplateFiles(process.cwd(), projectName);
+            // Copy template files
+            copyTemplateFiles(process.cwd(), projectName);
 
-        // Install UI framework
-        console.log(`\n📦 Setting up ${uiFramework}...`);
-        execSync(`node scripts/setup-ui.js ${uiFramework}`, { stdio: 'inherit' });
+            // Set up UI framework
+            console.log(`\n📦 Setting up ${uiFramework}...`);
+            execSync(`node scripts/setup-ui.js ${uiFramework}`, { stdio: 'inherit' });
+        } else {
+            const projectPath = path.join(process.cwd(), projectName);
+            if (!fs.existsSync(projectPath)) {
+                fs.mkdirSync(projectPath, { recursive: true });
+            }
+            process.chdir(projectPath);
+        }
 
         console.log('\n✨ Project ready! Get started with:');
         console.log(`\ncd ${projectName}`);

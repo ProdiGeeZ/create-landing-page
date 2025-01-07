@@ -9,14 +9,16 @@ import Integrations from '@/components/sections/Integrations';
 import Testimonials from '@/components/sections/Testimonials';
 import FAQ from '@/components/sections/FAQ';
 import CTA from '@/components/sections/CTA';
+import SocialProof from '@/components/sections/SocialProof';
 
 export default function Home() {
     return (
         <main>
             <Hero />
+            <SocialProof/>
             <Features features={siteConfig.features} />
-            <Benefits />
             <Solution />
+            <Benefits />
             <HowItWorks />
             <Integrations />
             <Testimonials testimonials={siteConfig.testimonials} />
