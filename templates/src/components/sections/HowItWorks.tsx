@@ -1,33 +1,97 @@
+interface Step {
+    title: string;
+    description: string;
+    icon?: string;
+}
+
 export default function HowItWorks() {
-    const steps = [
+    const steps: Step[] = [
         {
-            title: 'Choose Your Framework',
-            description: 'Select from popular UI frameworks like shadcn, Chakra UI, or Mantine.'
+            title: "Choose Your Framework",
+            description: "Select from popular UI frameworks like shadcn, Chakra UI, or Mantine to match your project needs.",
+            icon: "⚡"
         },
         {
-            title: 'Customize Components',
-            description: 'Easily modify pre-built sections to match your brand.'
+            title: "Customize Components",
+            description: "Easily modify pre-built sections and components to match your brand identity and requirements.",
+            icon: "🎨"
         },
         {
-            title: 'Deploy & Launch',
-            description: 'Deploy your landing page with a single command.'
+            title: "Deploy & Launch",
+            description: "Deploy your landing page with a single command and start converting visitors into customers.",
+            icon: "🚀"
         }
     ];
 
     return (
-        <section id="how-it-works" className="py-20">
-            <div className="container mx-auto px-4">
-                <h2 className="text-3xl font-bold text-center mb-12">How It Works</h2>
-                <div className="grid md:grid-cols-3 gap-8">
+        <section id="how-it-works" className="relative isolate overflow-hidden py-16 sm:py-24 lg:py-32">
+            {/* Background gradient */}
+            <div className="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,theme(colors.primary/5),transparent)]" />
+
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                <div className="mx-auto max-w-2xl text-center">
+                    <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl lg:text-4xl">
+                        How it works
+                    </h2>
+                    <p className="mt-4 text-base leading-7 text-gray-600 sm:text-lg">
+                        Get up and running in minutes with our simple three-step process.
+                    </p>
+                </div>
+
+                <div className="mx-auto mt-12 grid max-w-lg gap-8 sm:mt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
                     {steps.map((step, index) => (
-                        <div key={index} className="text-center">
-                            <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <span className="text-xl font-bold text-primary">{index + 1}</span>
+                        <div
+                            key={index}
+                            className="relative pl-16"
+                        >
+                            {/* Step number */}
+                            <div className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary">
+                                <div className="font-semibold">{index + 1}</div>
                             </div>
-                            <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
-                            <p className="text-gray-600">{step.description}</p>
+
+                            {/* Content */}
+                            <div className="relative">
+                                <div className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-sm font-semibold text-primary ring-1 ring-inset ring-primary/20">
+                                    {step.icon}
+                                    <div className="ml-2">{step.title}</div>
+                                </div>
+                                <p className="mt-4 text-base leading-7 text-gray-600">
+                                    {step.description}
+                                </p>
+                            </div>
+
+                            {/* Connector line */}
+                            {index !== steps.length - 1 && (
+                                <div className="absolute left-5 top-16 -ml-px h-[calc(100%+2rem)] w-[1px] bg-gray-200 lg:hidden" />
+                            )}
                         </div>
                     ))}
+                </div>
+
+                {/* CTA Section */}
+                <div className="mt-12 flex justify-center sm:mt-16">
+                    <a
+                        href="#"
+                        className="inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 
+                            text-sm font-semibold text-white shadow-sm transition-colors 
+                            hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 
+                            focus-visible:outline-offset-2 focus-visible:outline-primary"
+                    >
+                        Get Started Now
+                        <svg
+                            className="ml-2.5 h-4 w-4"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth="2"
+                            stroke="currentColor"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                            />
+                        </svg>
+                    </a>
                 </div>
             </div>
         </section>

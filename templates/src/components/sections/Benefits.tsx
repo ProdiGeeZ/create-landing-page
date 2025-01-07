@@ -1,11 +1,11 @@
-interface Benefit {
-    title: string;
-    description: string;
-    icon: string;
+import { Benefit } from '@/types';
+
+interface BenefitsProps {
+    benefits?: Benefit[];
 }
 
-export default function Benefits() {
-    const benefits: Benefit[] = [
+export default function Benefits({ benefits = [] }: BenefitsProps) {
+    const defaultBenefits: Benefit[] = [
         {
             title: "Quick Setup",
             description: "Get your landing page up and running in minutes with our CLI tool",
@@ -28,18 +28,62 @@ export default function Benefits() {
         }
     ];
 
+    const displayBenefits = benefits.length > 0 ? benefits : defaultBenefits;
+
     return (
-        <section id="benefits" className="py-20">
-            <div className="container mx-auto px-4">
-                <h2 className="text-3xl font-bold text-center mb-12">Benefits</h2>
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {benefits.map((benefit, index) => (
-                        <div key={index} className="p-6 border rounded-lg">
-                            <div className="w-12 h-12 bg-primary/10 rounded-full mb-4 flex items-center justify-center text-2xl">
+        <section id="benefits" className="relative isolate overflow-hidden py-16 sm:py-24 lg:py-32">
+            {/* Background gradient */}
+            <div className="absolute inset-0 -z-10 bg-[radial-gradient(35rem_35rem_at_top,theme(colors.primary/5),transparent)]" />
+
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div className="mx-auto max-w-2xl text-center">
+                    <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl lg:text-4xl">
+                        Everything you need to succeed
+                    </h2>
+                    <p className="mt-4 text-base leading-7 text-gray-600 sm:text-lg">
+                        Our platform provides all the features you need to create high-converting
+                        landing pages quickly and efficiently.
+                    </p>
+                </div>
+
+                <div className="mx-auto mt-12 grid max-w-lg gap-8 sm:mt-16 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-4">
+                    {displayBenefits.map((benefit, index) => (
+                        <div
+                            key={index}
+                            className="relative flex flex-col gap-6 rounded-2xl border border-gray-200 bg-white p-8 
+                                shadow-sm transition duration-300 hover:shadow-md"
+                        >
+                            {/* Icon */}
+                            <div className="flex h-12 w-12 items-center justify-center rounded-lg 
+                                bg-primary/10 text-2xl"
+                            >
                                 {benefit.icon}
                             </div>
-                            <h3 className="text-xl font-semibold mb-2">{benefit.title}</h3>
-                            <p className="text-gray-600">{benefit.description}</p>
+
+                            {/* Content */}
+                            <div>
+                                <h3 className="text-lg font-semibold leading-6 text-gray-900">
+                                    {benefit.title}
+                                </h3>
+                                <p className="mt-2 text-sm leading-6 text-gray-600">
+                                    {benefit.description}
+                                </p>
+                            </div>
+
+                            {/* Decorative arrow */}
+                            <svg
+                                className="absolute right-6 top-6 h-6 w-6 text-gray-300"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth="1.5"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"
+                                />
+                            </svg>
                         </div>
                     ))}
                 </div>

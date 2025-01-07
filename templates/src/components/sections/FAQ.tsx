@@ -1,10 +1,13 @@
 import { FAQ } from '@/types';
+import { useState } from 'react';
 
 interface FAQProps {
     faqs?: FAQ[];
 }
 
 export default function FAQSection({ faqs = [] }: FAQProps) {
+    const [openIndex, setOpenIndex] = useState<number | null>(null);
+
     const defaultFaqs: FAQ[] = [
         {
             question: "What is Create Landing Page?",
@@ -31,16 +34,70 @@ export default function FAQSection({ faqs = [] }: FAQProps) {
     const displayFaqs = faqs.length > 0 ? faqs : defaultFaqs;
 
     return (
-        <section id="faq" className="py-20">
-            <div className="container mx-auto px-4">
-                <h2 className="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
-                <div className="max-w-3xl mx-auto">
+        <section id="faq" className="relative isolate overflow-hidden bg-white py-16 sm:py-24 lg:py-32">
+            {/* Background gradient */}
+            <div className="absolute inset-0 -z-10 bg-[radial-gradient(35rem_35rem_at_top,theme(colors.primary/5),transparent)]" />
+
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div className="mx-auto max-w-2xl text-center">
+                    <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl lg:text-4xl">
+                        Frequently asked questions
+                    </h2>
+                    <p className="mt-4 text-base leading-7 text-gray-600 sm:text-lg">
+                        Have a question? Find answers to common questions about our landing page builder.
+                    </p>
+                </div>
+
+                <div className="mx-auto mt-8 max-w-3xl divide-y divide-gray-900/10 sm:mt-12">
                     {displayFaqs.map((faq, index) => (
-                        <div key={index} className="mb-6">
-                            <h3 className="text-xl font-semibold mb-2">{faq.question}</h3>
-                            <p className="text-gray-600">{faq.answer}</p>
+                        <div key={index} className="py-6">
+                            <button
+                                onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                                className="flex w-full items-start justify-between text-left"
+                            >
+                                <span className="text-base font-semibold leading-7 text-gray-900 sm:text-lg">
+                                    {faq.question}
+                                </span>
+                                <span className="ml-6 flex h-7 items-center">
+                                    <svg
+                                        className={`h-6 w-6 transform text-gray-600 transition-transform duration-200 ${openIndex === index ? 'rotate-180' : ''
+                                            }`}
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        strokeWidth="1.5"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            d="M19 9l-7 7-7-7"
+                                        />
+                                    </svg>
+                                </span>
+                            </button>
+                            <div
+                                className={`mt-2 overflow-hidden transition-all duration-200 ease-in-out ${openIndex === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                                    }`}
+                            >
+                                <p className="text-base leading-7 text-gray-600">
+                                    {faq.answer}
+                                </p>
+                            </div>
                         </div>
                     ))}
+                </div>
+
+                {/* CTA Section */}
+                <div className="mt-12 text-center sm:mt-16">
+                    <p className="text-base font-semibold leading-7 text-gray-900">
+                        Still have questions?
+                    </p>
+                    <a
+                        href="#"
+                        className="mt-2 text-sm font-semibold leading-6 text-primary hover:text-primary/80"
+                    >
+                        Contact our support team <span aria-hidden="true">&rarr;</span>
+                    </a>
                 </div>
             </div>
         </section>

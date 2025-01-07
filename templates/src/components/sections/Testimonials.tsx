@@ -1,5 +1,12 @@
 import { Testimonial } from '@/types';
 
+interface Testimonial {
+    content: string;
+    author: string;
+    role: string;
+    rating?: number;
+}
+
 interface TestimonialsProps {
     testimonials?: Testimonial[];
 }
@@ -7,27 +14,21 @@ interface TestimonialsProps {
 export default function Testimonials({ testimonials = [] }: TestimonialsProps) {
     const defaultTestimonials: Testimonial[] = [
         {
-            author: "Sarah Johnson",
-            role: "Marketing Director",
-            content: "This CLI tool saved us weeks of development time. The pre-built sections are beautiful and highly customizable.",
+            content: "This tool has transformed how I build landing pages. The CLI setup is brilliant, and the components are incredibly well-designed.",
+            author: "Sarah Chen",
+            role: "Frontend Developer",
             rating: 5
         },
         {
-            author: "Michael Chen",
-            role: "Startup Founder",
-            content: "Perfect for quickly launching landing pages. The UI framework options make it flexible for any project.",
+            content: "I've tried many landing page builders, but this one stands out. The combination of Next.js and choice of UI frameworks is perfect.",
+            author: "Michael Torres",
+            role: "Tech Lead",
             rating: 5
         },
         {
-            author: "Emily Davis",
-            role: "Product Manager",
-            content: "The best landing page solution we've used. Clean code and great documentation.",
-            rating: 5
-        },
-        {
-            author: "Alex Thompson",
-            role: "Developer",
-            content: "As a developer, I appreciate the attention to code quality and modern tech stack.",
+            content: "Setup in minutes, customization in seconds. This is exactly what I needed for rapid prototyping and production builds.",
+            author: "Emily Parker",
+            role: "Product Designer",
             rating: 5
         }
     ];
@@ -35,27 +36,70 @@ export default function Testimonials({ testimonials = [] }: TestimonialsProps) {
     const displayTestimonials = testimonials.length > 0 ? testimonials : defaultTestimonials;
 
     return (
-        <section id="testimonials" className="py-20 bg-gray-50">
-            <div className="container mx-auto px-4">
-                <h2 className="text-3xl font-bold text-center mb-12">What Our Customers Say</h2>
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <section id="testimonials" className="relative isolate overflow-hidden bg-white py-16 sm:py-24 lg:py-32">
+            {/* Background gradient */}
+            <div className="absolute left-1/2 top-0 -z-10 h-[1000px] w-[1000px] -translate-x-1/2 bg-gradient-to-tr from-primary/5 via-primary/10 to-transparent" />
+
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                {/* Section header */}
+                <div className="mx-auto max-w-2xl text-center">
+                    <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl lg:text-4xl">
+                        Loved by developers worldwide
+                    </h2>
+                    <p className="mt-4 text-base leading-7 text-gray-600 sm:text-lg">
+                        See what others are saying about their experience with our landing page builder.
+                    </p>
+                </div>
+
+                {/* Testimonials grid */}
+                <div className="mx-auto mt-12 grid max-w-lg gap-8 lg:max-w-none lg:grid-cols-3">
                     {displayTestimonials.map((testimonial, index) => (
-                        <div key={index} className="p-6 bg-white rounded-lg shadow-sm">
-                            <div className="flex items-center gap-1 mb-4">
-                                {[...Array(5)].map((_, i) => (
-                                    <span
-                                        key={i}
-                                        className={`text-${i < (testimonial.rating || 5) ? 'yellow' : 'gray'}-400`}
-                                    >
-                                        ★
-                                    </span>
-                                ))}
-                            </div>
-                            <p className="text-gray-600 mb-4">{testimonial.content}</p>
-                            <div className="font-semibold">{testimonial.author}</div>
-                            {testimonial.role && (
-                                <div className="text-sm text-gray-500">{testimonial.role}</div>
+                        <div
+                            key={index}
+                            className="relative flex flex-col gap-6 rounded-2xl bg-white p-6 shadow-sm ring-1 ring-gray-900/5 transition-all hover:shadow-lg sm:p-8"
+                        >
+                            {/* Rating stars */}
+                            {testimonial.rating && (
+                                <div className="flex gap-1">
+                                    {[...Array(5)].map((_, i) => (
+                                        <svg
+                                            key={i}
+                                            className={`h-5 w-5 ${i < testimonial.rating!
+                                                    ? "text-yellow-400"
+                                                    : "text-gray-200"
+                                                }`}
+                                            viewBox="0 0 20 20"
+                                            fill="currentColor"
+                                        >
+                                            <path
+                                                fillRule="evenodd"
+                                                d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.65l-4.752-.382-1.831-4.401z"
+                                                clipRule="evenodd"
+                                            />
+                                        </svg>
+                                    ))}
+                                </div>
                             )}
+
+                            {/* Content */}
+                            <blockquote className="flex-1 text-base leading-7 text-gray-700">
+                                "{testimonial.content}"
+                            </blockquote>
+
+                            {/* Author */}
+                            <footer>
+                                <div className="flex items-center gap-4">
+                                    <div className="h-10 w-10 rounded-full bg-primary/10" />
+                                    <div>
+                                        <div className="font-semibold text-gray-900">
+                                            {testimonial.author}
+                                        </div>
+                                        <div className="text-sm text-gray-600">
+                                            {testimonial.role}
+                                        </div>
+                                    </div>
+                                </div>
+                            </footer>
                         </div>
                     ))}
                 </div>
