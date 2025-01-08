@@ -9,7 +9,7 @@ interface NavbarProps {
 
 export default function Navbar({ items = [] }: NavbarProps) {
     return (
-        <header className="w-full border-b">
+        <header className="sticky top-0 z-50 w-full border-b dark:border-neutral-100 bg-background/90 backdrop-blur-sm">
             <div className="container mx-auto px-4 py-4 flex items-center justify-between">
                 <Link href="/" className="text-2xl font-bold">
                     Logo

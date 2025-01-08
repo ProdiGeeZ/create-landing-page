@@ -33,14 +33,15 @@ export default function Benefits({ benefits = [] }: BenefitsProps) {
     return (
         <section id="benefits" className="relative isolate overflow-hidden py-16 sm:py-24 lg:py-32">
             {/* Background gradient */}
-            <div className="absolute inset-0 -z-10 bg-[radial-gradient(35rem_35rem_at_top,theme(colors.primary/5),transparent)]" />
+            <div className="absolute inset-0 -z-10 bg-[radial-gradient(35rem_35rem_at_top,theme(colors.primary/5),transparent)] 
+                dark:bg-[radial-gradient(35rem_35rem_at_top,theme(colors.primary/10),transparent)]" />
 
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="mx-auto max-w-2xl text-center">
-                    <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl lg:text-4xl">
+                    <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl lg:text-4xl">
                         Everything you need to succeed
                     </h2>
-                    <p className="mt-4 text-base leading-7 text-gray-600 sm:text-lg">
+                    <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
                         Our platform provides all the features you need to create high-converting
                         landing pages quickly and efficiently.
                     </p>
@@ -50,29 +51,32 @@ export default function Benefits({ benefits = [] }: BenefitsProps) {
                     {displayBenefits.map((benefit, index) => (
                         <div
                             key={index}
-                            className="relative flex flex-col gap-6 rounded-2xl border border-gray-200 bg-white p-8 
-                                shadow-sm transition duration-300 hover:shadow-md"
+                            className="relative flex flex-col gap-6 rounded-2xl border border-neutral-200 
+                                dark:border-primary/20 dark:hover:border-primary/80 bg-background p-8
+                                shadow-sm transition duration-300 hover:shadow-md hover:bg-neutral-50/75
+                                dark:bg-neutral-100/30 dark:hover:bg-primary/5"
                         >
                             {/* Icon */}
                             <div className="flex h-12 w-12 items-center justify-center rounded-lg 
-                                bg-primary/10 text-2xl"
+                                bg-primary/10 dark:bg-primary/20 text-2xl"
                             >
                                 {benefit.icon}
                             </div>
 
                             {/* Content */}
                             <div>
-                                <h3 className="text-lg font-semibold leading-6 text-gray-900">
+                                <h3 className="text-lg font-semibold leading-6 text-foreground">
                                     {benefit.title}
                                 </h3>
-                                <p className="mt-2 text-sm leading-6 text-gray-600">
+                                <p className="mt-2 text-sm leading-6 text-muted-foreground">
                                     {benefit.description}
                                 </p>
                             </div>
 
                             {/* Decorative arrow */}
                             <svg
-                                className="absolute right-6 top-6 h-6 w-6 text-gray-300"
+                                className="absolute right-6 top-6 h-6 w-6 text-neutral-300 
+                                    dark:text-neutral-700"
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 strokeWidth="1.5"

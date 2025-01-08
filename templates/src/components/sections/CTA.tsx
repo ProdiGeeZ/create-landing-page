@@ -19,10 +19,10 @@ export default function CTA() {
                     <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center">
                         <a
                             href="#"
-                            className="inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 
-                                text-sm font-semibold text-white shadow-sm transition-all 
-                                hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 
-                                focus-visible:outline-offset-2 focus-visible:outline-primary"
+                            className="inline-flex items-center justify-center rounded-lg border border-gray-300 dark:border-neutral-300
+                                px-6 py-3 text-sm font-semibold text-white shadow-sm transition-colors 
+                            hover:bg-neutral-100/30 focus-visible:outline focus-visible:outline-2 
+                            focus-visible:outline-offset-2 focus-visible:outline-primary"
                         >
                             Get Started Free
                             <svg
@@ -56,8 +56,9 @@ export default function CTA() {
                             {[1, 2, 3].map((_, i) => (
                                 <div
                                     key={i}
-                                    className="inline-block h-8 w-8 rounded-full ring-2 ring-white 
-                                        bg-gradient-to-r from-primary/30 to-primary/10"
+                                    className="inline-block h-8 w-8 rounded-full border-2 
+                                            border-background dark:border-neutral-300 bg-neutral-200 
+                                            dark:bg-neutral-100 ring-2 ring-background dark:ring-black-800"
                                 />
                             ))}
                         </div>

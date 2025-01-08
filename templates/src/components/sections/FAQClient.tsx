@@ -1,29 +1,31 @@
 'use client';
 
-import { useState } from 'react';
 import { FAQ } from '@/types';
+import { useState } from 'react';
 
-interface FAQProps {
+interface FAQClientProps {
     faqs: FAQ[];
 }
 
-export function FAQClient({ faqs }: FAQProps) {
+export function FAQClient({ faqs }: FAQClientProps) {
     const [openIndex, setOpenIndex] = useState<number | null>(null);
 
     return (
-        <div className="mx-auto mt-8 max-w-3xl divide-y divide-gray-900/10 sm:mt-12">
+        <div className="mx-auto mt-12 max-w-3xl divide-y divide-neutral-200 dark:divide-neutral-800">
             {faqs.map((faq, index) => (
                 <div key={index} className="py-6">
                     <button
                         onClick={() => setOpenIndex(openIndex === index ? null : index)}
                         className="flex w-full items-start justify-between text-left"
                     >
-                        <span className="text-base font-semibold leading-7 text-gray-900 sm:text-lg">
+                        <span className="text-base font-semibold leading-7 text-foreground">
                             {faq.question}
                         </span>
                         <span className="ml-6 flex h-7 items-center">
                             <svg
-                                className={`h-6 w-6 transform text-gray-600 transition-transform duration-200 ${openIndex === index ? 'rotate-180' : ''}`}
+                                className={`h-6 w-6 transition-transform duration-200 
+                                    text-neutral-600 dark:text-neutral-400
+                                    ${openIndex === index ? 'rotate-45' : ''}`}
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 strokeWidth="1.5"
@@ -32,18 +34,18 @@ export function FAQClient({ faqs }: FAQProps) {
                                 <path
                                     strokeLinecap="round"
                                     strokeLinejoin="round"
-                                    d="M19 9l-7 7-7-7"
+                                    d="M12 6v12m6-6H6"
                                 />
                             </svg>
                         </span>
                     </button>
-                    <div
-                        className={`mt-2 overflow-hidden transition-all duration-200 ease-in-out ${openIndex === index ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
-                    >
-                        <p className="text-base leading-7 text-gray-600">
-                            {faq.answer}
-                        </p>
-                    </div>
+                    {openIndex === index && (
+                        <div className="mt-2 pr-12">
+                            <p className="text-base leading-7 text-muted-foreground">
+                                {faq.answer}
+                            </p>
+                        </div>
+                    )}
                 </div>
             ))}
         </div>

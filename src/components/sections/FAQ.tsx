@@ -32,16 +32,17 @@ export default function FAQSection({ faqs = [] }: FAQProps) {
     const displayFaqs = faqs.length > 0 ? faqs : defaultFaqs;
 
     return (
-        <section id="faq" className="relative isolate overflow-hidden bg-white py-16 sm:py-24 lg:py-32">
+        <section id="faq" className="relative isolate overflow-hidden bg-background py-16 sm:py-24 lg:py-32">
             {/* Background gradient */}
-            <div className="absolute inset-0 -z-10 bg-[radial-gradient(35rem_35rem_at_top,theme(colors.primary/5),transparent)]" />
+            <div className="absolute inset-0 -z-10 bg-[radial-gradient(35rem_35rem_at_top,theme(colors.primary/5),transparent)] 
+                dark:bg-[radial-gradient(35rem_35rem_at_top,theme(colors.primary/10),transparent)]" />
 
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="mx-auto max-w-2xl text-center">
-                    <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl lg:text-4xl">
+                    <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl lg:text-4xl">
                         Frequently asked questions
                     </h2>
-                    <p className="mt-4 text-base leading-7 text-gray-600 sm:text-lg">
+                    <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
                         Have a question? Find answers to common questions about our landing page builder.
                     </p>
                 </div>
@@ -50,12 +51,13 @@ export default function FAQSection({ faqs = [] }: FAQProps) {
 
                 {/* CTA Section */}
                 <div className="mt-12 text-center sm:mt-16">
-                    <p className="text-base font-semibold leading-7 text-gray-900">
+                    <p className="text-base font-semibold leading-7 text-foreground">
                         Still have questions?
                     </p>
                     <a
                         href="#"
-                        className="mt-2 text-sm font-semibold leading-6 text-primary hover:text-primary/80"
+                        className="mt-2 text-sm font-semibold leading-6 text-primary 
+                            hover:text-primary/80 transition-colors"
                     >
                         Contact our support team <span aria-hidden="true">&rarr;</span>
                     </a>

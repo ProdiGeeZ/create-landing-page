@@ -1,4 +1,4 @@
-import UIProvider from '@/providers/UIProvider';
+import { ThemeProvider } from '@/providers/ThemeProvider';
 import { Inter } from 'next/font/google';
 import './globals.css';
 
@@ -12,9 +12,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <UIProvider>
+        <ThemeProvider initialTheme="green" initialMode="dark">
           {children}
-        </UIProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

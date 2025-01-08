@@ -65,6 +65,8 @@
     "typescript": "^5.0.0",
     "ts-jest": "^29.1.1",
     "@babel/preset-typescript": "^7.23.3",
-    "@types/fs-extra": "^11.0.4"
+    "@types/fs-extra": "^11.0.4",
+    "autoprefixer": "^10.4.17",
+    "postcss": "^8.4.35"
   }
 }
