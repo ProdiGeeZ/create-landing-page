@@ -6,39 +6,59 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  darkMode: 'class',
+  darkMode: "class",
   theme: {
     extend: {
       colors: {
+        border: "rgb(var(--border))",
         background: "rgb(var(--background))",
         foreground: "rgb(var(--foreground))",
-        primary: {
-          DEFAULT: "rgb(var(--primary))",
-          foreground: "rgb(var(--primary-foreground))",
-        },
-        neutral: {
-          50: "rgb(var(--neutral-50))",
-          100: "rgb(var(--neutral-100))",
-          200: "rgb(var(--neutral-200))",
-          300: "rgb(var(--neutral-300))",
-          400: "rgb(var(--neutral-400))",
-          500: "rgb(var(--neutral-500))",
-          600: "rgb(var(--neutral-600))",
-          700: "rgb(var(--neutral-700))",
-          800: "rgb(var(--neutral-800))",
-          900: "rgb(var(--neutral-900))",
-          950: "rgb(var(--neutral-950))",
-        },
+        
         muted: {
           DEFAULT: "rgb(var(--muted))",
           foreground: "rgb(var(--muted-foreground))",
         },
+
         card: {
           DEFAULT: "rgb(var(--card))",
           foreground: "rgb(var(--card-foreground))",
         },
-        border: "rgb(var(--border))",
-        ring: "rgb(var(--ring))",
+
+        popover: {
+          DEFAULT: "rgb(var(--popover))",
+          foreground: "rgb(var(--popover-foreground))",
+        },
+        
+        primary: {
+          DEFAULT: "rgb(var(--primary))",
+          foreground: "rgb(var(--primary-foreground))",
+          muted: "rgb(var(--primary-muted))",
+        },
+        secondary: {
+          DEFAULT: "rgb(var(--secondary))",
+          foreground: "rgb(var(--secondary-foreground))",
+          muted: "rgb(var(--secondary-muted))",
+        },
+        accent: {
+          DEFAULT: "rgb(var(--accent))",
+          foreground: "rgb(var(--accent-foreground))",
+          muted: "rgb(var(--accent-muted))",
+        },
+        destructive: {
+          DEFAULT: "rgb(var(--destructive))",
+          foreground: "rgb(var(--destructive-foreground))",
+          muted: "rgb(var(--destructive-muted))",
+        },
+        success: {
+          DEFAULT: "rgb(var(--success))",
+          foreground: "rgb(var(--success-foreground))",
+          muted: "rgb(var(--success-muted))",
+        },
+        warning: {
+          DEFAULT: "rgb(var(--warning))",
+          foreground: "rgb(var(--warning-foreground))",
+          muted: "rgb(var(--warning-muted))",
+        },
       },
     },
   },

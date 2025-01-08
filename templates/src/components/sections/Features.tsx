@@ -63,7 +63,7 @@ export default function Features({ features = [] }: FeaturesProps) {
                             className="relative flex flex-col gap-6 rounded-2xl border border-neutral-200 
                                 dark:border-primary/20 dark:hover:border-primary/80 bg-background p-8
                                 shadow-sm transition duration-300 hover:shadow-md hover:bg-neutral-50/75
-                                dark:bg-neutral-100/30 dark:hover:bg-primary/5"
+                                dark:bg-background-100/30 dark:hover:bg-primary/5"
                         >
                             {/* Icon */}
                             <div className="flex h-12 w-12 items-center justify-center rounded-lg 

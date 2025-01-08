@@ -1,31 +1,34 @@
-import React from 'react';
-import { siteConfig } from '@/config/site';
-import Hero from '@/components/sections/Hero';
+import Navbar from '@/components/layout/Navbar';
+import SocialProof from '@/components/sections/SocialProof';
 import Features from '@/components/sections/Features';
-import Benefits from '@/components/sections/Benefits';
 import Solution from '@/components/sections/Solution';
-import Stats from '@/components/sections/Stats';
+import Benefits from '@/components/sections/Benefits';
 import HowItWorks from '@/components/sections/HowItWorks';
 import Integrations from '@/components/sections/Integrations';
 import Testimonials from '@/components/sections/Testimonials';
-import FAQ from '@/components/sections/FAQ';
+import FAQSection from '@/components/sections/FAQ';
 import CTA from '@/components/sections/CTA';
-import SocialProof from '@/components/sections/SocialProof';
+import Footer from '@/components/layout/Footer';
+import { siteConfig } from '@/config/site';
+import Hero from '@/components/sections/Hero';
 
 export default function Home() {
-    return (
-        <main>
-            <Hero />
-            <SocialProof />
-            <Features features={siteConfig.features} />
-            <Solution />
-            <Stats />
-            <Benefits />
-            <HowItWorks />
-            <Integrations />
-            <Testimonials testimonials={siteConfig.testimonials} />
-            <FAQ faqs={siteConfig.faqs} />
-            <CTA />
-        </main>
-    );
-} 
+  return (
+    <>
+      <Navbar items={siteConfig.nav} />
+      <main>
+        <Hero />
+        <SocialProof />
+        <Features features={siteConfig.features} />
+        <Solution />
+        <Benefits />
+        <HowItWorks />
+        <Integrations />
+        <Testimonials testimonials={siteConfig.testimonials} />
+        <FAQSection faqs={siteConfig.faqs} />
+        <CTA />
+      </main>
+      <Footer />
+    </>
+  );
+}

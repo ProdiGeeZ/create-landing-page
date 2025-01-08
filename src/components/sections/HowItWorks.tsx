@@ -73,7 +73,7 @@ export default function HowItWorks() {
                     <a
                         href="#"
                         className="inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 
-                            text-sm font-semibold text-white shadow-sm transition-colors 
+                            text-sm font-semibold shadow-sm transition-colors 
                             hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 
                             focus-visible:outline-offset-2 focus-visible:outline-primary"
                     >

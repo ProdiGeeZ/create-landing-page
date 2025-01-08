@@ -1,7 +1,7 @@
 'use client';
 
-import { ThemeKey, themes } from '@/config/themes';
 import { createContext, useContext, useEffect, useState } from 'react';
+import { themes, ThemeKey } from '@/config/themes';
 
 type ThemeContextType = {
     theme: ThemeKey;
@@ -14,7 +14,7 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({
     children,
-    initialTheme = 'blue',
+    initialTheme = 'emerald',
     initialMode = 'light'
 }: {
     children: React.ReactNode;
@@ -38,12 +38,10 @@ export function ThemeProvider({
     };
 
     useEffect(() => {
-        // Apply initial theme and mode immediately
         changeTheme(initialTheme);
         document.documentElement.classList.toggle('dark', initialMode === 'dark');
         setIsDark(initialMode === 'dark');
 
-        // Then check for saved preferences
         const savedTheme = localStorage.getItem('theme') as ThemeKey;
         const savedMode = localStorage.getItem('darkMode') as 'light' | 'dark';
 

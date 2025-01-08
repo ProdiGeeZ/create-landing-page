@@ -1,17 +1,21 @@
 export default function CTA() {
     return (
-        <section id="cta" className="relative isolate overflow-hidden">
-            {/* Background gradient */}
-            <div className="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,theme(colors.primary/5),transparent)]" />
+        <section id="cta" className="relative isolate overflow-hidden bg-background">
+            {/* Background decoration */}
+            <div
+                aria-hidden="true"
+                className="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,theme(colors.primary/10),transparent)]
+                    dark:bg-[radial-gradient(45rem_50rem_at_top,theme(colors.primary/5),transparent)]"
+            />
 
             <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
                 <div className="mx-auto max-w-2xl text-center">
-                    <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                    <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
                         Build your next landing page
                         <span className="block text-primary">in minutes, not hours.</span>
                     </h2>
 
-                    <p className="mx-auto mt-6 max-w-xl text-base leading-7 text-gray-600 sm:text-lg">
+                    <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-muted-foreground">
                         Get started with our CLI tool and choose from multiple UI frameworks.
                         Create high-converting landing pages without writing code from scratch.
                     </p>
@@ -19,10 +23,11 @@ export default function CTA() {
                     <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center">
                         <a
                             href="#"
-                            className="inline-flex items-center justify-center rounded-lg border border-gray-300 dark:border-neutral-300
-                                px-6 py-3 text-sm font-semibold text-white shadow-sm transition-colors 
-                            hover:bg-neutral-100/30 focus-visible:outline focus-visible:outline-2 
-                            focus-visible:outline-offset-2 focus-visible:outline-primary"
+                            className="inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 
+                                text-sm font-semibold text-primary-foreground shadow-sm transition-all 
+                                duration-200 hover:bg-primary/90 hover:shadow-md active:bg-primary/80 
+                                focus-visible:outline focus-visible:outline-2 
+                                focus-visible:outline-offset-2 focus-visible:outline-primary"
                         >
                             Get Started Free
                             <svg
@@ -41,10 +46,11 @@ export default function CTA() {
                         </a>
                         <a
                             href="#"
-                            className="inline-flex items-center justify-center rounded-lg border border-gray-300 
-                                px-6 py-3 text-sm font-semibold text-gray-900 shadow-sm transition-all 
-                                hover:bg-gray-50 focus-visible:outline focus-visible:outline-2 
-                                focus-visible:outline-offset-2 focus-visible:outline-gray-600"
+                            className="inline-flex items-center justify-center rounded-lg border border-border 
+                                bg-card px-6 py-3 text-sm font-semibold text-foreground shadow-sm 
+                                transition-all duration-200 hover:bg-muted/50 hover:shadow-md 
+                                focus-visible:outline focus-visible:outline-2 
+                                focus-visible:outline-offset-2 focus-visible:outline-primary"
                         >
                             View Documentation
                         </a>
@@ -57,13 +63,13 @@ export default function CTA() {
                                 <div
                                     key={i}
                                     className="inline-block h-8 w-8 rounded-full border-2 
-                                            border-background dark:border-neutral-300 bg-neutral-200 
-                                            dark:bg-neutral-100 ring-2 ring-background dark:ring-black-800"
+                                        border-background bg-muted ring-2 ring-background 
+                                        dark:border-muted dark:bg-muted dark:ring-background"
                                 />
                             ))}
                         </div>
-                        <div className="text-sm leading-6 text-gray-600">
-                            <span className="font-semibold text-gray-900">1000+</span> developers
+                        <div className="text-sm leading-6 text-muted-foreground">
+                            <span className="font-semibold text-foreground">1000+</span> developers
                             <span className="block sm:inline sm:ml-1">already shipped with our tool</span>
                         </div>
                     </div>

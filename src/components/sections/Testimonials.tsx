@@ -54,8 +54,8 @@ export default function Testimonials({ testimonials = [] }: TestimonialsProps) {
                             className="relative flex flex-col gap-6 rounded-2xl bg-background p-6 
                                 shadow-sm ring-1 ring-neutral-200 dark:ring-primary/20 
                                 dark:hover:ring-primary/80 transition-all hover:shadow-lg 
-                                hover:bg-neutral-50/75 dark:bg-neutral-100/30 
-                                dark:hover:bg-primary/5 sm:p-8"
+                                hover:bg-neutral-50/75 dark:bg-background/50 
+                                dark:hover:bg-primary/30 sm:p-8"
                         >
                             {/* Rating stars */}
                             {testimonial.rating && (

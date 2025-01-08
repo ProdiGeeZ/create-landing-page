@@ -1,29 +1,21 @@
-import { Metadata } from 'next';
-import { siteConfig } from '@/config/site';
-import Navbar from '@/components/layout/Navbar';
-import Footer from '@/components/layout/Footer';
-import UIProvider from '@/providers/UIProvider';
+import { ThemeProvider } from '@/providers/ThemeProvider';
+import { Inter } from 'next/font/google';
 import './globals.css';
 
-export const metadata: Metadata = {
-    title: siteConfig.name,
-    description: siteConfig.description,
-};
+const inter = Inter({ subsets: ['latin'] });
 
 export default function RootLayout({
-    children,
+  children,
 }: {
-    children: React.ReactNode;
+  children: React.ReactNode;
 }) {
-    return (
-        <html lang="en">
-            <body>
-                <UIProvider>
-                    <Navbar items={siteConfig.nav} />
-                    {children}
-                    <Footer />
-                </UIProvider>
-            </body>
-        </html>
-    );
-} 
+  return (
+    <html lang="en">
+      <body className={inter.className}>
+        <ThemeProvider initialTheme="sunset" initialMode="dark">
+          {children}
+        </ThemeProvider>
+      </body>
+    </html>
+  );
+}

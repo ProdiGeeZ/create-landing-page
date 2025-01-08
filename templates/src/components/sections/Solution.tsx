@@ -10,8 +10,7 @@ export default function Solution() {
     return (
         <section id="solution" className="relative isolate overflow-hidden">
             {/* Background with gradient */}
-            <div className="absolute inset-0 -z-10 bg-gradient-to-b from-neutral-100/80 to-background 
-                dark:from-black-0/50 dark:to-background" />
+            <div className="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,theme(colors.primary/50),transparent)]" />
 
             <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
                 <div className="grid gap-x-12 gap-y-8 lg:grid-cols-2">
@@ -67,16 +66,16 @@ export default function Solution() {
                     {/* Preview/Demo */}
                     <div className="relative lg:mt-0">
                         <div className="aspect-[4/3] overflow-hidden rounded-xl bg-neutral-100 
-                            dark:bg-neutral-200 shadow-lg">
+                            dark:bg-neutral-800 shadow-lg">
                             <div className="absolute inset-0 flex items-center justify-center p-8">
                                 {/* Preview Window */}
-                                <div className="w-full space-y-6 rounded-lg bg-background dark:bg-neutral-100 p-6 shadow-sm 
-                                    ring-1 ring-neutral-900/5 dark:ring-neutral-100">
+                                <div className="w-full space-y-6 rounded-lg bg-background dark:bg-neutral-900 p-6 shadow-sm 
+                                    ring-1 ring-neutral-900/5 dark:ring-neutral-600">
                                     {/* Stats Grid */}
                                     <div className="grid grid-cols-3 gap-4">
                                         {[1, 2, 3].map((_, i) => (
                                             <div key={i} className="rounded-lg bg-neutral-100 
-                                                dark:bg-neutral-200 p-4">
+                                                dark:bg-neutral-700 p-4">
                                                 <div className="font-semibold text-primary">
                                                     {i === 0 ? '179%' : i === 1 ? '500+' : '24/7'}
                                                 </div>

@@ -1,6 +1,6 @@
 {
   "name": "@prodigeez/create-landing-page",
-  "version": "1.0.99",
+  "version": "1.1.0",
   "description": "CLI tool to create high-converting landing pages with Next.js",
   "keywords": [
     "nextjs",
@@ -45,28 +45,30 @@
     "prepare": "npm run test"
   },
   "dependencies": {
-    "prompts": "^2.4.2",
     "chalk": "^4.1.2",
+    "clsx": "^2.1.1",
+    "fs-extra": "^11.2.0",
     "ora": "^5.4.1",
-    "fs-extra": "^11.2.0"
+    "prompts": "^2.4.2",
+    "tailwind-merge": "^2.6.0"
   },
   "devDependencies": {
-    "jest": "^29.0.0",
-    "@types/jest": "^29.0.0",
+    "@babel/preset-typescript": "^7.23.3",
     "@testing-library/jest-dom": "^6.0.0",
-    "mock-fs": "^5.2.0",
-    "memfs": "^4.6.0",
+    "@types/fs-extra": "^11.0.4",
+    "@types/jest": "^29.0.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "next": "^14.0.0",
-    "tailwindcss": "^3.4.1",
     "@types/tailwindcss": "^3.1.0",
-    "typescript": "^5.0.0",
-    "ts-jest": "^29.1.1",
-    "@babel/preset-typescript": "^7.23.3",
-    "@types/fs-extra": "^11.0.4",
     "autoprefixer": "^10.4.17",
-    "postcss": "^8.4.35"
+    "jest": "^29.0.0",
+    "memfs": "^4.6.0",
+    "mock-fs": "^5.2.0",
+    "next": "^14.0.0",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1",
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.0.0"
   }
 }

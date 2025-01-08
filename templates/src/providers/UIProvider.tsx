@@ -1,11 +1,12 @@
 'use client';
 
-import React, { ReactNode } from 'react';
+import { ReactNode } from 'react';
 
 interface UIProviderProps {
     children: ReactNode;
+    framework?: 'shadcn' | 'chakra' | 'tailwind' | 'magic';
 }
 
-export default function UIProvider({ children }: UIProviderProps) {
+export default function UIProvider({ children, framework = 'tailwind' }: UIProviderProps) {
     return <>{children}</>;
 } 
