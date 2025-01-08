@@ -1,6 +1,6 @@
 {
   "name": "@prodigeez/create-landing-page",
-  "version": "1.0.98",
+  "version": "1.0.99",
   "description": "CLI tool to create high-converting landing pages with Next.js",
   "keywords": [
     "nextjs",
