@@ -12,8 +12,8 @@ npx @prodigeez/create-landing-page
 
 - Multiple UI Framework Support:
   - shadcn/ui
-  - Chakra UI
-  - Mantine
+  - Chakra UI (coming soon)
+  - Mantine (coming soon)
 
 - Pre-built Sections:
   - Hero Section
