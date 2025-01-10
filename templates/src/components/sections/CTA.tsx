@@ -1,21 +1,14 @@
 export default function CTA() {
     return (
-        <section id="cta" className="relative isolate overflow-hidden bg-background">
-            {/* Background decoration */}
-            <div
-                aria-hidden="true"
-                className="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,theme(colors.primary/10),transparent)]
-                    dark:bg-[radial-gradient(45rem_50rem_at_top,theme(colors.primary/5),transparent)]"
-            />
-
+        <section id="cta" className="relative isolate overflow-hidden">
             <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
                 <div className="mx-auto max-w-2xl text-center">
-                    <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+                    <h2 className="text-3xl font-bold tracking-tight text-foreground dark:text-foreground sm:text-4xl">
                         Build your next landing page
-                        <span className="block text-primary">in minutes, not hours.</span>
+                        <span className="block text-primary dark:text-primary">in minutes, not hours.</span>
                     </h2>
 
-                    <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-muted-foreground">
+                    <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-muted-foreground dark:text-muted-foreground">
                         Get started with our CLI tool and choose from multiple UI frameworks.
                         Create high-converting landing pages without writing code from scratch.
                     </p>
@@ -27,7 +20,7 @@ export default function CTA() {
                                 text-sm font-semibold text-primary-foreground shadow-sm transition-all 
                                 duration-200 hover:bg-primary/90 hover:shadow-md active:bg-primary/80 
                                 focus-visible:outline focus-visible:outline-2 
-                                focus-visible:outline-offset-2 focus-visible:outline-primary"
+                                focus-visible:outline-offset-2 focus-visible:outline-primary dark:bg-primary dark:text-white"
                         >
                             Get Started Free
                             <svg
@@ -47,8 +40,9 @@ export default function CTA() {
                         <a
                             href="#"
                             className="inline-flex items-center justify-center rounded-lg border border-border 
-                                bg-card px-6 py-3 text-sm font-semibold text-foreground shadow-sm 
-                                transition-all duration-200 hover:bg-muted/50 hover:shadow-md 
+                                bg-card/50 dark:bg-card/50 px-6 py-3 text-sm font-semibold text-foreground 
+                                dark:text-foreground shadow-sm transition-all duration-200 
+                                hover:bg-muted/50 dark:hover:bg-muted/10 hover:shadow-md 
                                 focus-visible:outline focus-visible:outline-2 
                                 focus-visible:outline-offset-2 focus-visible:outline-primary"
                         >
@@ -64,12 +58,12 @@ export default function CTA() {
                                     key={i}
                                     className="inline-block h-8 w-8 rounded-full border-2 
                                         border-background bg-muted ring-2 ring-background 
-                                        dark:border-muted dark:bg-muted dark:ring-background"
+                                        dark:border-background dark:bg-muted dark:ring-background"
                                 />
                             ))}
                         </div>
-                        <div className="text-sm leading-6 text-muted-foreground">
-                            <span className="font-semibold text-foreground">1000+</span> developers
+                        <div className="text-sm leading-6 text-muted-foreground dark:text-muted-foreground">
+                            <span className="font-semibold text-foreground dark:text-foreground">1+</span> developers
                             <span className="block sm:inline sm:ml-1">already shipped with our tool</span>
                         </div>
                     </div>

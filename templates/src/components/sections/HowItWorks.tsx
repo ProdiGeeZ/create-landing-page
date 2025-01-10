@@ -30,10 +30,10 @@ export default function HowItWorks() {
 
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
                 <div className="mx-auto max-w-2xl text-center">
-                    <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl lg:text-4xl">
+                    <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl lg:text-4xl">
                         How it works
                     </h2>
-                    <p className="mt-4 text-base leading-7 text-gray-600 sm:text-lg">
+                    <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
                         Get up and running in minutes with our simple three-step process.
                     </p>
                 </div>
@@ -55,14 +55,14 @@ export default function HowItWorks() {
                                     {step.icon}
                                     <div className="ml-2">{step.title}</div>
                                 </div>
-                                <p className="mt-4 text-base leading-7 text-gray-600">
+                                <p className="mt-4 text-muted-foreground leading-7">
                                     {step.description}
                                 </p>
                             </div>
 
                             {/* Connector line */}
                             {index !== steps.length - 1 && (
-                                <div className="absolute left-5 top-16 -ml-px h-[calc(100%+2rem)] w-[1px] bg-gray-200 lg:hidden" />
+                                <div className="absolute left-5 top-16 -ml-px h-[calc(100%+2rem)] w-[1px] bg-border lg:hidden" />
                             )}
                         </div>
                     ))}
@@ -73,9 +73,9 @@ export default function HowItWorks() {
                     <a
                         href="#"
                         className="inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 
-                            text-sm font-semibold shadow-sm transition-colors 
+                            text-sm font-semibold text-primary-foreground shadow-sm transition-colors 
                             hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 
-                            focus-visible:outline-offset-2 focus-visible:outline-primary"
+                            focus-visible:outline-offset-2 focus-visible:outline-primary dark:bg-primary dark:text-white"
                     >
                         Get Started Now
                         <svg

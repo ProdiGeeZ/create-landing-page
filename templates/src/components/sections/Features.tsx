@@ -43,13 +43,16 @@ export default function Features({ features = [] }: FeaturesProps) {
     return (
         <section id="features" className="relative isolate overflow-hidden py-16 sm:py-24 lg:py-32">
             {/* Background gradient */}
-            <div className="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,theme(colors.primary/5),transparent)]" />
+            <div className="absolute inset-0 -z-10 bg-[radial-gradient(35rem_35rem_at_top,theme(colors.primary/5),transparent)]" />
 
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="mx-auto max-w-2xl text-center">
-                    <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl lg:text-4xl">
-                        Everything you need to build a great landing page
+                    <h2 className="text-base font-semibold leading-7 text-primary">
+                        Powerful Features
                     </h2>
+                    <p className="mt-2 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+                        Everything you need to build a great landing page
+                    </p>
                     <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
                         All the features you need to create high-converting landing pages,
                         without the complexity.
@@ -60,20 +63,23 @@ export default function Features({ features = [] }: FeaturesProps) {
                     {displayFeatures.map((feature, index) => (
                         <div
                             key={index}
-                            className="relative flex flex-col gap-6 rounded-2xl border border-neutral-200 
-                                dark:border-primary/20 dark:hover:border-primary/80 bg-background p-8
-                                shadow-sm transition duration-300 hover:shadow-md hover:bg-neutral-50/75
-                                dark:bg-background-100/30 dark:hover:bg-primary/5"
+                            className="group relative flex flex-col gap-6 rounded-2xl border border-neutral-200 
+                                dark:border-primary/20 bg-background p-8 shadow-sm transition-all duration-300 
+                                hover:shadow-lg hover:bg-neutral-50/75 dark:bg-background/30 dark:hover:bg-primary/5 
+                                dark:hover:border-primary/80 hover:-translate-y-1"
                         >
                             {/* Icon */}
                             <div className="flex h-12 w-12 items-center justify-center rounded-lg 
-                                bg-primary/10 dark:bg-neutral-300 text-xl">
-                                {feature.icon}
+                                bg-primary/10 text-xl ring-1 ring-primary/25 dark:ring-primary/40
+                                group-hover:bg-primary/20 dark:group-hover:bg-primary/30 transition-colors">
+                                <span className="text-primary group-hover:scale-110 transition-transform">
+                                    {feature.icon}
+                                </span>
                             </div>
 
                             {/* Content */}
                             <div className="flex flex-col gap-2">
-                                <h3 className="text-lg font-semibold leading-6 text-foreground">
+                                <h3 className="text-lg font-semibold leading-6 text-foreground group-hover:text-primary transition-colors">
                                     {feature.title}
                                 </h3>
                                 <p className="text-sm leading-6 text-muted-foreground">
@@ -81,9 +87,13 @@ export default function Features({ features = [] }: FeaturesProps) {
                                 </p>
                             </div>
 
-                            {/* Hover effect overlay */}
-                            <div className="absolute inset-0 -z-10 rounded-2xl transition-colors 
-                                group-hover:bg-neutral-50/75 dark:group-hover:bg-neutral-800/50" />
+                            {/* Decorative corner gradients */}
+                            <div className="absolute right-0 top-0 -z-10 h-24 w-24 rounded-br-2xl 
+                                bg-gradient-to-bl from-primary/5 via-primary/2 to-transparent opacity-0 
+                                transition-opacity group-hover:opacity-100" />
+                            <div className="absolute left-0 bottom-0 -z-10 h-24 w-24 rounded-tl-2xl 
+                                bg-gradient-to-tr from-primary/5 via-primary/2 to-transparent opacity-0 
+                                transition-opacity group-hover:opacity-100" />
                         </div>
                     ))}
                 </div>

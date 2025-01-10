@@ -24,7 +24,7 @@ export default function Home() {
         <Benefits />
         <HowItWorks />
         <Integrations />
-        <Testimonials testimonials={siteConfig.testimonials} />
+        <Testimonials />
         <FAQSection faqs={siteConfig.faqs} />
         <CTA />
       </main>

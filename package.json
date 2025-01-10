@@ -41,8 +41,7 @@
     "postversion": "git push && git push --tags",
     "test:watch": "jest --watch",
     "dev": "node bin/create-landing.js",
-    "create": "node bin/create-landing.js",
-    "prepare": "npm run test"
+    "create": "node bin/create-landing.js"
   },
   "dependencies": {
     "chalk": "^4.1.2",

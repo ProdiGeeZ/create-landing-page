@@ -1,3 +1,7 @@
+'use client';
+
+import * as React from 'react';
+
 export default function SocialProof() {
     const brands = [
         { name: "Acme Inc", logo: "A" },
@@ -47,26 +51,13 @@ export default function SocialProof() {
                     <div className="mx-auto max-w-2xl lg:max-w-none">
                         <div className="mx-auto mt-8 grid grid-cols-1 gap-8 sm:mt-12 sm:grid-cols-2 lg:grid-cols-4">
                             {stats.map((stat, index) => (
-                                <div
-                                    key={stat.label}
-                                    className="relative overflow-hidden rounded-2xl border border-border bg-background p-8 
-                                        shadow-lg transition duration-300 hover:border-primary/50 hover:shadow-xl 
-                                        dark:bg-background/50 dark:hover:bg-background/60"
+                                <div key={stat.label}
+                                    className="relative group"
                                     style={{
-                                        transform: `translateY(${index * 8}px)`,
-                                        animation: `float 3s ease-in-out infinite ${index * 0.5}s`,
-                                    }}
-                                >
-                                    <div className="absolute inset-x-0 -bottom-40 -z-10 transform-gpu overflow-hidden 
-                                        blur-3xl sm:-bottom-80"
-                                        aria-hidden="true"
-                                    >
-                                        <div className="relative left-[calc(50%-13rem)] aspect-[1155/678] w-[36.125rem] 
-                                            -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-primary/40 to-primary/5 
-                                            opacity-30 sm:left-[calc(50%-36rem)] sm:w-[72.1875rem]"
-                                        />
-                                    </div>
-
+                                        animation: `fadeSlideUp 0.5s ease-out forwards ${index * 0.1}s`,
+                                        opacity: 0,
+                                        transform: 'translateY(20px)',
+                                    }}>
                                     <div className="relative">
                                         <dt>
                                             <div className="flex flex-col space-y-2">
@@ -87,21 +78,18 @@ export default function SocialProof() {
                             ))}
                         </div>
 
-                        {/* Brands section */}
                         <div className="relative mt-24">
                             <div className="absolute inset-0 flex items-center" aria-hidden="true">
                             </div>
 
-                            {/* Section title */}
                             <div className="relative flex justify-center">
                                 <span className="px-6 text-base font-semibold text-foreground">
                                     Trusted by these companies
                                 </span>
                             </div>
 
-                            {/* Brands grid */}
                             <div className="mx-auto mt-12">
-                                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5">
+                                <div className="mx-auto grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3 md:grid-cols-5">
                                     {brands.map((brand, index) => (
                                         <div
                                             key={brand.name}
@@ -117,25 +105,15 @@ export default function SocialProof() {
                                                 group-hover:border-primary/50 group-hover:shadow-lg dark:bg-background/50 
                                                 dark:group-hover:bg-background/60"
                                             >
-                                                {/* Logo background effect */}
                                                 <div className="absolute inset-0 -z-10 bg-gradient-to-br from-primary/5 
-                                                    to-primary/0 opacity-0 transition-opacity duration-300 
+                                                    to-transparent opacity-0 transition-opacity duration-300 
                                                     group-hover:opacity-100"
                                                 />
 
-                                                {/* Logo */}
                                                 <span className="text-2xl font-bold text-muted-foreground transition-colors 
                                                     duration-300 group-hover:text-primary">
                                                     {brand.logo}
                                                 </span>
-                                            </div>
-
-                                            {/* Brand name tooltip */}
-                                            <div className="absolute -bottom-8 left-1/2 z-10 -translate-x-1/2 transform 
-                                                rounded-md bg-background px-2 py-1 text-xs font-medium text-muted-foreground 
-                                                opacity-0 shadow-lg transition-all duration-300 group-hover:opacity-100"
-                                            >
-                                                {brand.name}
                                             </div>
                                         </div>
                                     ))}
@@ -143,15 +121,6 @@ export default function SocialProof() {
                             </div>
                         </div>
                     </div>
-                </div>
-
-                {/* Bottom decoration */}
-                <div className="absolute inset-x-0 -bottom-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-bottom-80"
-                    aria-hidden="true">
-                    <div className="relative left-[calc(50%-13rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 
-                        rotate-[30deg] bg-gradient-to-tr from-primary/40 to-primary/5 opacity-30 
-                        sm:left-[calc(50%-36rem)] sm:w-[72.1875rem]"
-                    />
                 </div>
             </section>
         </>

@@ -45,26 +45,6 @@ export const siteConfig = {
       description: "Description of feature 3",
       },
   ],
-  testimonials: [
-    {
-      content: "This product is amazing!",
-      author: "John Doe",
-      role: "CEO, Company",
-      rating: 5,
-      },
-      {
-        content: "This product is amazing!",
-        author: "John Doe",
-        role: "CEO, Company",
-        rating: 5,
-      },
-      {
-        content: "This product is amazing!",
-        author: "John Doe",
-        role: "CEO, Company",
-        rating: 5,
-      },
-  ],
   faqs: [
     {
       question: "Common question 1?",

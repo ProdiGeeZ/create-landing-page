@@ -1,70 +1,32 @@
 'use client';
 
-import { createContext, useContext, useEffect, useState } from 'react';
-import { themes, ThemeKey } from '@/config/themes';
+import { useEffect } from 'react';
+import { ThemeContext } from './theme-context';
+import { type Theme, themeColors } from '@/config/themes';
 
-type ThemeContextType = {
-    theme: ThemeKey;
-    isDark: boolean;
-    changeTheme: (theme: ThemeKey) => void;
-    toggleDarkMode: () => void;
-};
-
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
-
-export function ThemeProvider({
-    children,
-    initialTheme = 'emerald',
-    initialMode = 'light'
-}: {
+interface ThemeProviderProps {
     children: React.ReactNode;
-    initialTheme?: ThemeKey;
-    initialMode?: 'light' | 'dark';
-}) {
-    const [theme, setTheme] = useState<ThemeKey>(initialTheme);
-    const [isDark, setIsDark] = useState(initialMode === 'dark');
+    theme: Theme;
+    mode: 'light' | 'dark';
+}
 
-    const changeTheme = (newTheme: ThemeKey) => {
-        document.documentElement.setAttribute('data-theme', newTheme);
-        setTheme(newTheme);
-        localStorage.setItem('theme', newTheme);
-    };
-
-    const toggleDarkMode = () => {
-        const newMode = !isDark;
-        document.documentElement.classList.toggle('dark', newMode);
-        setIsDark(newMode);
-        localStorage.setItem('darkMode', newMode ? 'dark' : 'light');
-    };
-
+export function ThemeProvider({ children, theme, mode }: ThemeProviderProps) {
     useEffect(() => {
-        changeTheme(initialTheme);
-        document.documentElement.classList.toggle('dark', initialMode === 'dark');
-        setIsDark(initialMode === 'dark');
+        const root = document.documentElement;
 
-        const savedTheme = localStorage.getItem('theme') as ThemeKey;
-        const savedMode = localStorage.getItem('darkMode') as 'light' | 'dark';
+        root.style.setProperty('--primary', themeColors[theme]);
+        root.style.setProperty('--ring', themeColors[theme]);
 
-        if (savedTheme && themes[savedTheme]) {
-            changeTheme(savedTheme);
+        if (mode === 'dark') {
+            root.classList.add('dark');
+        } else {
+            root.classList.remove('dark');
         }
-        if (savedMode) {
-            setIsDark(savedMode === 'dark');
-            document.documentElement.classList.toggle('dark', savedMode === 'dark');
-        }
-    }, [initialTheme, initialMode]);
+    }, [theme, mode]);
 
     return (
-        <ThemeContext.Provider value={{ theme, isDark, changeTheme, toggleDarkMode }}>
+        <ThemeContext.Provider value={{ theme, mode }}>
             {children}
         </ThemeContext.Provider>
     );
 }
-
-export function useTheme() {
-    const context = useContext(ThemeContext);
-    if (context === undefined) {
-        throw new Error('useTheme must be used within a ThemeProvider');
-    }
-    return context;
-} 

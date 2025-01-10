@@ -38,9 +38,8 @@ function copyTemplateFiles(targetPath, projectName) {
                 const overrideFiles = [
                     'package.json',
                     'tsconfig.json',
-                    'tailwind.config.js',
-                    'postcss.config.js',
-                    'next.config.js'
+                    'tailwind.config.ts',
+                    'postcss.config.js'
                 ];
                 if (!fs.existsSync(targetItemPath) || overrideFiles.includes(item)) {
                     fs.copyFileSync(sourcePath, targetItemPath);
@@ -123,38 +122,19 @@ async function main() {
 
         console.log(`\n🚀 Creating landing page project: ${projectName}...`);
 
-        // Step 1: Create Next.js app first
-        if (!process.env.TEST_MODE) {
-            const createNextAppCommand = [
-                'npx create-next-app@latest',
-                projectName,
-                '--typescript',
-                '--tailwind',
-                '--eslint',
-                '--use-npm',
-                '--no-git'
-            ].filter(Boolean).join(' ');
-
-            execSync(createNextAppCommand, { stdio: 'inherit' });
-            process.chdir(projectName);
-
-            // Create required directories first
-            fs.mkdirSync('src/providers', { recursive: true });
-            fs.mkdirSync('src/lib', { recursive: true });
-
-            // Copy template files
-            copyTemplateFiles(process.cwd(), projectName);
-
-            // Set up UI framework
-            console.log(`\n📦 Setting up ${uiFramework}...`);
-            execSync(`node scripts/setup-ui.js ${uiFramework}`, { stdio: 'inherit' });
-        } else {
-            const projectPath = path.join(process.cwd(), projectName);
-            if (!fs.existsSync(projectPath)) {
-                fs.mkdirSync(projectPath, { recursive: true });
-            }
-            process.chdir(projectPath);
+        // Create project directory
+        const projectPath = path.join(process.cwd(), projectName);
+        if (!fs.existsSync(projectPath)) {
+            fs.mkdirSync(projectPath, { recursive: true });
         }
+        process.chdir(projectPath);
+
+        // Copy template files first
+        copyTemplateFiles(process.cwd(), projectName);
+
+        // Set up UI framework
+        console.log(`\n📦 Setting up ${uiFramework}...`);
+        execSync(`node scripts/setup-ui.js ${uiFramework}`, { stdio: 'inherit' });
 
         console.log('\n✨ Project ready! Get started with:');
         console.log(`\ncd ${projectName}`);
