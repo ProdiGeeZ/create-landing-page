@@ -32,3 +32,5 @@ yarn-error.log*
 *.njsproj
 *.sln
 src/components/DarkModeToggle.tsx
+scripts/reset-shadcn.js
+scripts/cleanup.js
